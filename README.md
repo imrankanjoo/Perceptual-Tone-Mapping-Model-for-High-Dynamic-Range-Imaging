@@ -79,14 +79,8 @@ Here are three examples comparing TMOz with other TMOs:
 
 This work presents TMOz, a CIECAM16-based tone mapping model that effectively addresses the challenges of HDR imaging. The model's ability to adapt colorfulness and hue from HDR images ensures more precise color reproduction. Both objective and subjective evaluations validate the superiority of TMOz over existing TMOs.
 
-## References
-
-1. Y. Huang et al., "Learning representations for high-dynamic-range image color transfer in a self-supervised way," IEEE Transactions on Multimedia, vol. 23, pp. 176-188, 2020.
-2. A. Bhandari and F. Krahmer, "HDR imaging from quantization noise," in 2020 IEEE International Conference on Image Processing (ICIP), 2020: IEEE, pp. 101-105.
-3. F. Banterle et al., Advanced high dynamic range imaging. CRC press, 2017.
-4. R. Mantiuk et al., "Color correction for tone mapping," Computer Graphics Forum, vol. 28, no. 2, pp. 193-202, 2009.
-5. G. W. Larson et al., "A visibility matching tone reproduction operator for high dynamic range scenes," IEEE Transactions on Visualization and Computer Graphics, vol. 3, no. 4, pp. 291-306, 1997.
-6. E. Reinhard et al., "Photographic tone reproduction for digital images," in Proceedings of the 29th annual conference on Computer graphics and interactive techniques, 2002, pp. 267-276.
+## Cite
+Mehmood, I., Shi, X., Khan, M. U., & Luo, M. R. (2023). Perceptual Tone Mapping Model for High Dynamic Range Imaging. IEEE Access, 11, 110272-110288.
 
 
 
