@@ -19,7 +19,7 @@ Numerous TMOs have been proposed, each with varying effectiveness depending on t
 ## Proposed Model
 
 The flowchart of TMOz is illustrated in Figure 1. The input to TMOz is XYZ HDR data acquired from an HDR image. The model employs CIECAM16 to compute perceptual attributes such as brightness, colorfulness, and hue, considering the surround conditions for accurate color reproduction.
-#### Workflow
+                                                    #### Workflow
 
 ![Workflow](Images/workflow.jpg)
 ### Brightness Calculation
@@ -73,7 +73,7 @@ Here are three examples comparing TMOz with other TMOs:
 
 **FIGURE 17.** The overall ranking of the TMOs based on the overall preference scale. TMOz ranked first due to moderate contrast, moderate colorfulness, more naturalness, and better structuredness (as reported using objective metrics).
 
-![Overall Preference Ranking](Images/overall_preference.png)
+![Overall Preference Ranking](Images/overall_preference.jpg)
 
 ## Conclusion
 
