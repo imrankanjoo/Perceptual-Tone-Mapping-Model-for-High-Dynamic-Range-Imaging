@@ -1,6 +1,6 @@
-Tone Mapping for HDR Images
+ Perceptual Tone Mapping Model for High Dynamic Range Imaging
+Note: This code is not optimized for processing.
 
-This MATLAB script performs tone mapping on High Dynamic Range (HDR) images using the TMOz2CAM16Q algorithm. The script reads an HDR image, applies tone mapping to convert it into a Standard Dynamic Range (SDR) image, and displays the result.
 
 Table of Contents
 -----------------
