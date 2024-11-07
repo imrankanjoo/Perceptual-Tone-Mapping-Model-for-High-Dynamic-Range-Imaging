@@ -1,0 +1,64 @@
+function rgbimg= TMOz2CAM16Q(hdr,cond)
+%% %step 1 
+%Sorround Conditions
+sz=size(hdr);
+xyzi=call_srgb2xyz(hdr); clear hdr;
+y=xyzi(:,2);
+key=cal_alpha(y(:));
+
+[XYZw1,La1,Yb,sr,XYZw2,La2]=getcond(cond);
+
+%% % 
+
+normy=100;
+xyzi=xyzi./max(xyzi(:,2))*normy;
+[Q,RGBa]=XYZ2CAM16Q(xyzi,XYZw1,La1,Yb,sr);
+Qimg = reshape(Q, sz(1), sz(2));
+clear xyzi Q
+maxq=max(Qimg(:));
+Qimg=Qimg./maxq;
+%% step 2: %apply bilateral filter
+
+[base_Q, detail_Q] = fastbilateralfilter(Qimg); clear Qimg
+    %% step 4: % Apply local contrast for details enhancement
+   
+    detail_Qe= Qimg_LocalContrast_Enhancement(detail_Q); 
+%      figure,imshow(detail_Q,'border','tight')
+     %% %step 3: %apply compression on base
+
+%       
+    base_Qc = tonecurveM(base_Q, key);
+    %% step 6: % Combine the details and base
+    Qimgo1=base_Qc.* detail_Qe;
+    Qimgo=Qimgo1(:).*maxq;
+   clear Y_adapt_tc detail_je white detail_j base_j
+
+    %% Step 6,7: Colour corection based QMh
+    [Mc,h]=newM(Qimgo(:).',   XYZw2,La2,Yb,sr,RGBa);
+    QMh=[Qimgo(:) Mc.' h.'];
+    xyzo = CAM16UCS2XYZ_QMhs(QMh,XYZw2,La2,Yb,sr);
+
+ %% Clipping: simulate incomplete light adaptation and the glare in visual system
+                  
+    TonedXYZ=TMOzclip(xyzo);
+
+    
+    %% display or write image
+    TonedXYZ=TonedXYZ./max(TonedXYZ(:,2))*XYZw2(2);
+%     rgbimg = display_r(TonedXYZ,'gog_pars_10').*255; 
+    TonedXYZ=TonedXYZ./max(TonedXYZ(:,2))*1;              
+    rgbimg=xyz2srgb(TonedXYZ);
+    rgbimg=reshape(rgbimg, sz);
+    rgbimg=uint8(rgbimg);
+
+
+end
+function [XYZw1,La1,Yb,sr,XYZw2,La2]=getcond(cond)
+    XYZw1=cond.XYZw1;
+    Yb=cond.Yb;
+    La1=cond.Lw1*Yb/100;
+    sr=cond.sr;
+    XYZw2=cond.XYZw2;
+    La2=cond.Lw2*Yb/100;
+
+    end
